@@ -28,7 +28,6 @@ const Navbar = async () => {
           <SearchBar />
           <div className="flex items-center gap-x-4">
             <NavbarActions />
-
             <UserButton />
           </div>
         </div>
