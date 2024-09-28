@@ -80,7 +80,7 @@ const CartPage = () => {
   };
 
   const handleRemoves = (data: Product) => {
-    let filtered = quantity.filter((item) => item.id !== data.id);
+    const filtered = quantity.filter((item) => item.id !== data.id);
     setQuantity(filtered);
   };
 
