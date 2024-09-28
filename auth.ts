@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import Github from "next-auth/providers/github";
+
 // Auth Config
 import authConfig from "@/auth.config";
 
@@ -12,7 +12,7 @@ export const {
   // Auth Config
   ...authConfig,
 
-  providers: [Github],
+  providers: [],
 
   callbacks: {
     jwt({ token, user, profile }) {
