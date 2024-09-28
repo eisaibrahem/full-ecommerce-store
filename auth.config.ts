@@ -1,21 +1,20 @@
-import type { NextAuthConfig } from "next-auth";
+import type { AuthOptions } from "next-auth";
 
-export const authConfig = {
-  // Auth Secret
+export const authConfig: AuthOptions = {
   secret: process.env.AUTH_SECRET,
-
-  // satisfies NextAuthConfig, info supplied in auth.ts
-  // Login Providers
   providers: [],
 
   callbacks: {
-    /**
-     * Checks if the user is authorized to access the requested page.
-     * Used by MiddleWare
-     */
-    async authorized({ auth, request }) {
+    async signIn() {
       return true;
     },
+    async session({ session }) {
+      return session;
+    },
+    async jwt({ token }) {
+      return token;
+    },
   },
-} satisfies NextAuthConfig;
+};
+
 export default authConfig;
