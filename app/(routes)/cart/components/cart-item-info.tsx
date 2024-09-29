@@ -17,7 +17,6 @@ export interface QuantityDetail {
   // Add more properties as needed
 }
 
-
 const CartItemInfo: React.FC<CartItemInfoProps> = ({ product }) => {
   return (
     <div>
@@ -37,4 +36,3 @@ const CartItemInfo: React.FC<CartItemInfoProps> = ({ product }) => {
 };
 
 export default CartItemInfo;
-
