@@ -16,69 +16,56 @@ interface QuantityDetail {
 
 const CartPage = () => {
   const cartItems = useCart((state) => state.items);
-  const initialQuantities: QuantityDetail[] = cartItems.map((item) => ({
-    id: item.id,
-    quantity: 1,
-    price: Number(item.price), // Convert 'item.price' to number
-  }));
 
-  const [quantity, setQuantity] = useState<QuantityDetail[]>(initialQuantities);
+  const [quantity, setQuantity] = useState<QuantityDetail[]>([]);
   const [isMounted, setIsMounted] = useState(false);
 
+  // Initialize quantities based on cartItems
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      const initialQuantities: QuantityDetail[] = cartItems.map((item) => ({
+        id: item.id,
+        quantity: 1,
+        price: Number(item.price),
+      }));
+      setQuantity(initialQuantities);
+    }
+  }, [cartItems]);
+
+  // Mount check
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  // Handle incrementing the quantity
   const handleAddQuantity = (data: Product) => {
-    let updatedQuantity = [...quantity];
-    const alreadyInCart = updatedQuantity.find((item) => item.id === data.id);
-
-    if (alreadyInCart) {
-      const updatedItem = {
-        ...alreadyInCart,
-        quantity: alreadyInCart.quantity + 1,
-        price: Number(data.price) * (alreadyInCart.quantity + 1),
-      };
-      updatedQuantity = updatedQuantity.map((item) =>
-        item.id === data.id ? updatedItem : item
-      );
-    } else {
-      updatedQuantity.push({
-        id: data.id,
-        quantity: 1,
-        price: Number(data.price),
-      });
-    }
-
+    const updatedQuantity = quantity.map((item) =>
+      item.id === data.id
+        ? {
+            ...item,
+            quantity: item.quantity + 1,
+            price: Number(data.price) * (item.quantity + 1),
+          }
+        : item
+    );
     setQuantity(updatedQuantity);
   };
 
+  // Handle decrementing the quantity
   const handleDecQuantity = (data: Product) => {
-    let updatedQuantity = [...quantity];
-    const alreadyInCart = updatedQuantity.find((item) => item.id === data.id);
-
-    if (alreadyInCart) {
-      const updatedItem = {
-        ...alreadyInCart,
-        quantity: alreadyInCart.quantity === 0 ? 0 : alreadyInCart.quantity - 1,
-        price:
-          Number(data.price) *
-          (alreadyInCart.quantity === 0 ? 0 : alreadyInCart.quantity - 1),
-      };
-      updatedQuantity = updatedQuantity.map((item) =>
-        item.id === data.id ? updatedItem : item
-      );
-    } else {
-      updatedQuantity.push({
-        id: data.id,
-        quantity: 0,
-        price: 0,
-      });
-    }
-
+    const updatedQuantity = quantity.map((item) =>
+      item.id === data.id && item.quantity > 1
+        ? {
+            ...item,
+            quantity: item.quantity - 1,
+            price: Number(data.price) * (item.quantity - 1),
+          }
+        : item
+    );
     setQuantity(updatedQuantity);
   };
 
+  // Handle removing the item from the cart
   const handleRemoves = (data: Product) => {
     const filtered = quantity.filter((item) => item.id !== data.id);
     setQuantity(filtered);
