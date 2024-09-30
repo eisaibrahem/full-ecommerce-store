@@ -4,7 +4,7 @@ import Container from "@/components/ui/container";
 import NavbarActions from "@/components/navbar-actions";
 import getCategories from "@/actions/get-categories";
 import SearchBar from "./search-bar";
-import UserButton from "./user-button";
+
 import Image from "next/image";
 
 const Navbar = async () => {
@@ -28,7 +28,6 @@ const Navbar = async () => {
           <SearchBar />
           <div className="flex items-center gap-x-4">
             <NavbarActions />
-            <UserButton />
           </div>
         </div>
       </Container>

@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpIcon } from "lucide-react";
 import React, { useState, useEffect, CSSProperties } from "react";
 import { animateScroll } from "react-scroll";
 
@@ -7,6 +8,7 @@ const BackToTop: React.FC = () => {
   const [showButton, setShowButton] = useState<boolean>(false);
 
   useEffect(() => {
+    // التحقق من أن المكون يعمل فقط في بيئة المتصفح
     const handleScroll = () => {
       if (window.scrollY > 80) {
         setShowButton(true);
@@ -15,19 +17,26 @@ const BackToTop: React.FC = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    // أضف مستمع التمرير إذا كانت بيئة الجهة الأمامية
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll);
+    }
 
+    // قم بإزالة المستمع عند تنظيف useEffect
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", handleScroll);
+      }
     };
   }, []);
 
   const handleClick = () => {
-    animateScroll.scrollToTop({
-      top: 0,
-      behavior: "smooth",
-      duration: 200,
-    });
+    if (typeof window !== "undefined") {
+      animateScroll.scrollToTop({
+        behavior: "smooth",
+        duration: 200,
+      });
+    }
   };
 
   const buttonStyles: CSSProperties = {
@@ -42,40 +51,28 @@ const BackToTop: React.FC = () => {
     fontSize: "14px",
     cursor: "pointer",
     opacity: showButton ? 1 : 0,
-    transition: "opacity 0.1s ease",
-    borderRadius: "60%",
+    transition: "opacity 0.3s ease-in-out",
+    borderRadius: "50%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     width: "42px",
     height: "42px",
-  };
-
-  const iconStyles: CSSProperties = {
-    fontSize: "20px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
   };
 
   return (
     <>
-      <style>{`
-        .back-to-top:hover {
-          background-color: #0F172A !important;
-          color: #ffffff !important;
-        }
-        .back-to-top:focus {
-          outline: none;
-        }
-        .back-to-top:active {
-          transform: translateY(1px);
-        }
-      `}</style>
-      <button
-        className="back-to-top"
-        onClick={handleClick}
-        style={buttonStyles}
-      >
-        <i className="fas fa-arrow-up" style={iconStyles}></i>
-      </button>
+      {showButton && (
+        <button
+          className="back-to-top"
+          onClick={handleClick}
+          style={buttonStyles}
+          aria-label="Back to top"
+        >
+          <ArrowUpIcon size={20} />
+        </button>
+      )}
     </>
   );
 };
