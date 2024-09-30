@@ -12,7 +12,7 @@ interface BillboardProps {
 const Billboard: React.FC<BillboardProps> = ({ data }: BillboardProps) => {
   console.log(data);
   return (
-    <div className="p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden">
+    <div className="p-4 pt-10 sm:p-6 lg:p-8 rounded-xl overflow-hidden">
       <Swiper
         spaceBetween={30}
         slidesPerView={1}

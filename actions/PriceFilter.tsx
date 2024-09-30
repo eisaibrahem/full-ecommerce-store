@@ -60,11 +60,11 @@ const PriceFilter: React.FC = () => {
           <div key={range.id} className="flex items-center">
             <Button
               className={cn(
-                "rounded-md text-sm text-gray-800 p-2 bg-white border border-gray-300",
+                "rounded-md text-sm text-primary p-2 bg-background border border-gray-300 hover:bg-secondary",
                 selectedMinPrice === String(range.min) &&
                   (selectedMaxPrice === String(range.max) ||
                     (range.max === null && selectedMaxPrice === "null")) &&
-                  "bg-black text-white"
+                  "bg-secondary"
               )}
               onClick={() => onClick(range)}
             >

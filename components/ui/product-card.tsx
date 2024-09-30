@@ -54,7 +54,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   return (
     <div
       onClick={handleClick}
-      className="bg-white group cursor-pointer rounded-xl hover-zoom 
+      className="bg-background group cursor-pointer rounded-xl hover-zoom 
       transform hover:scale-105 transition-transform duration-200 border p-3 space-y-4"
     >
       {/* Image & actions */}

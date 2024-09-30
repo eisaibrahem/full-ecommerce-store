@@ -45,15 +45,17 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
   return (
     <>
       {" "}
-      <nav className={`mx-6 flex items-center space-x-4 lg:space-x-6 `}>
+      <nav
+        className={`mx-6 flex items-start space-x-4 lg:space-x-6 w-full pl-10`}
+      >
         {!isMobile &&
           routes.map((route) => (
             <Link
               key={route.href}
               href={route.href}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-black",
-                route.active ? "text-black" : "text-neutral-500"
+                "text-md font-medium transition-colors hover:text-teal-500",
+                route.active ? "text-teal-500" : "text-primary-500"
               )}
             >
               {route.label}
@@ -64,22 +66,22 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
             className="fixed top-[25px] left-[7px] h-[55px] flex flex-col gap-[5px] cursor-pointer"
             onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
           >
-            <span className="h-[2px] w-[20px] bg-black"></span>
-            <span className="h-[2px] w-[20px] bg-black"></span>
-            <span className="h-[2px] w-[20px] bg-black"></span>
+            <span className="h-[2px] w-[20px] bg-primary"></span>
+            <span className="h-[2px] w-[20px] bg-primary"></span>
+            <span className="h-[2px] w-[20px] bg-primary"></span>
           </div>
         )}
       </nav>
       {isOpen && (
-        <div className="fixed top-16 h-[160px]  bg-white flex flex-col items-center gap-[10px] w-[100%] z-[99] text-black">
+        <div className="fixed top-16 h-[160px]  bg-background flex flex-col items-center gap-[10px] w-[100%] z-[99] text-black">
           {routes.map((route) => (
             <a onClick={handleLinkClick} key={route.href}>
               <Link
                 key={route.href}
                 href={route.href}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-black",
-                  route.active ? "text-black" : "text-neutral-500"
+                  "text-sm font-medium transition-colors hover:text-teal-500",
+                  route.active ? "text-teal-500" : "text-primary"
                 )}
               >
                 {route.label}

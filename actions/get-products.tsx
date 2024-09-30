@@ -26,10 +26,12 @@ const getProducts = async (query: Query): Promise<Product[]> => {
   });
 
   const res = await fetch(url, {
-    cache: "no-store", // هذا يلغي التخزين المؤقت
+    cache: "no-store", // لتعطيل التخزين المؤقت
   });
 
   if (!res.ok) {
+    const errorDetails = await res.json();
+    console.error("Error fetching products:", errorDetails);
     throw new Error("An error occurred while fetching the data.");
   }
 

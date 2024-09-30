@@ -44,7 +44,7 @@ const BackToTop: React.FC = () => {
     bottom: "20px",
     right: "18px",
     zIndex: 1000,
-    backgroundColor: "#2A54CA",
+    backgroundColor: "teal",
     color: "#ffffff",
     border: "none",
     padding: "10px",

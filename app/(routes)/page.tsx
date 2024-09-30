@@ -45,9 +45,9 @@ const ReviewCard: React.FC<{ review: (typeof sampleReviews)[0] }> = ({
   review,
 }) => {
   return (
-    <div className="card bg-white p-5 rounded-full shadow-md">
-      <p className="text-gray-600">{review.content}</p>
-      <div className="text-sm text-gray-500 mt-2">- {review.author}</div>
+    <div className="card bg-background border p-5 rounded-full shadow-md">
+      <p className="text-primary-">{review.content}</p>
+      <div className="text-sm text-primary mt-2">- {review.author}</div>
     </div>
   );
 };
@@ -71,7 +71,7 @@ const HomePage: React.FC = async () => {
 
   return (
     <Container>
-      <div className="space-y-10 pb-10 pt-10">
+      <div className="space-y-8 pb-10 pt-10">
         <Billboard data={billboard} />
 
         <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">

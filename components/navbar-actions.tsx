@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import useCart from "@/hooks/use-cart";
+import { ModeToggle } from "./ui/mode-toggle";
 
 const NavbarActions = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -26,16 +27,17 @@ const NavbarActions = () => {
       <Button
         size="sm"
         onClick={() => router.push("/cart")}
-        className="flex items-center rounded-full bg-black md:px-4 px-1 py-1 md:py-2"
+        className="flex items-center rounded-full bg-primary md:px-4 px-1 py-1 md:py-2"
       >
-        <ShoppingBag size={20} color="white" />
-        <span className="ml-[3px] md:ml-2  font-medium  text-white">
+        <ShoppingBag size={20} className="text-background" />
+        <span className="ml-[3px] md:ml-2  font-medium  text-background ">
           {cart.items.length}
         </span>
       </Button>
       <div onClick={() => router.push("/wishlist")}>
         <Heart />
       </div>
+      <ModeToggle />
     </div>
   );
 };

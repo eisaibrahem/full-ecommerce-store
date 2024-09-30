@@ -13,7 +13,9 @@ const Rating: FC<RatingProps> = ({ value }) => {
       <Star
         key={i}
         size={20}
-        className={i <= value ? "fill-current text-blue-900" : "text-gray-300"} // Use blue color for filled stars
+        className={
+          i <= value ? "fill-current text-yellow-400" : "text-gray-300"
+        } // Use blue color for filled stars
       />
     );
   }
