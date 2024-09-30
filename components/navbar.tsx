@@ -17,7 +17,7 @@ const Navbar = async () => {
             <Image
               width={40}
               height={40}
-              src="/indiekart_logo.png"
+              src="/eistore_logo.png"
               alt="logo"
               className="h-10"
             />

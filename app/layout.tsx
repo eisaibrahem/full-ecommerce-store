@@ -11,6 +11,10 @@ const font = Urbanist({ subsets: ["latin"] });
 export const metadata = {
   title: "eistore",
   description: "eistore - The place for all your purchases.",
+
+  icons: {
+    icon: "/eistore_logo.png",
+  },
 };
 
 export default function RootLayout({
