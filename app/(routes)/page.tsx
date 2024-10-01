@@ -67,7 +67,7 @@ const CustomerReviews: React.FC<{ reviews: typeof sampleReviews }> = ({
 const HomePage: React.FC = async () => {
   const products = await getProducts({ isFeatured: true });
 
-  const billboard = await getBillboard("00d98326-12f6-44f8-ba37-e4afc81c759a");
+  const billboard = await getBillboard();
 
   return (
     <Container>

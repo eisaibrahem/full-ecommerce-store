@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Tilt } from "react-tilt";
+
 import ProductCard from "@/components/ui/product-card";
 import { Product } from "@/types";
 import NoResults from "@/components/ui/no-results";
@@ -17,10 +17,7 @@ const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
       {items.length === 0 && <NoResults />}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {items.map((item) => (
-          <Tilt key={item.id} className="tilt">
-            <ProductCard data={item} />
-            {/* {console.log(item)} */}
-          </Tilt>
+          <ProductCard data={item} key={item.id} />
         ))}
       </div>
     </div>
