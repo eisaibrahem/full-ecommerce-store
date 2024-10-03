@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
@@ -17,11 +17,13 @@ const Summary: React.FC<SummaryProps> = ({ quantity }) => {
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
   const removeAll = useCart((state) => state.removeAll);
+  const [isPaid, setIsPaid] = useState(false); // حالة جديدة لتحديد إذا تم الدفع
 
   useEffect(() => {
     if (searchParams.get("success")) {
       toast.success("Payment completed.");
-      removeAll();
+      removeAll(); // هذه الوظيفة تقوم بتصفير السلة
+      setIsPaid(true); // تحديد أن الدفع تم بنجاح
     }
 
     if (searchParams.get("canceled")) {
@@ -55,7 +57,8 @@ const Summary: React.FC<SummaryProps> = ({ quantity }) => {
       <div className="mt-6 space-y-4">
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
           <div className="text-base font-medium text-primary">Order total</div>
-          <Currency value={totalQuantityPrice} />
+          <Currency value={isPaid ? 0 : totalQuantityPrice} />{" "}
+          {/* إذا تم الدفع، يتم عرض 0 */}
         </div>
       </div>
       <Button
