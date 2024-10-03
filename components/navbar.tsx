@@ -3,11 +3,20 @@ import MainNav from "@/components/main-nav";
 import Container from "@/components/ui/container";
 import NavbarActions from "@/components/navbar-actions";
 import getCategories from "@/actions/get-categories";
-
 import Image from "next/image";
+import getStore from "@/actions/get-store";
+import { Store } from "@/types";
 
 const Navbar = async () => {
   const categories = await getCategories();
+
+  let store: Store;
+
+  try {
+    store = await getStore();
+  } catch (error) {
+    console.error("Error fetching store in Navbar:", error);
+  }
 
   return (
     <div className="border-b fixed top-0 left-0 z-50 bg-background w-full">
@@ -21,7 +30,7 @@ const Navbar = async () => {
               alt="logo"
               className="h-10"
             />
-            <p className="font-bold text-3xl">Eistore</p>
+            <p className="font-bold text-3xl">{store?.name ?? "EISTORE"}</p>
           </Link>
           <MainNav data={categories} />
 

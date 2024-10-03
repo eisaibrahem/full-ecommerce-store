@@ -50,3 +50,9 @@ export interface PriceRange {
   min: number;
   max: number | null;
 }
+
+
+export interface Store {
+  id: string;
+  name: string;
+}
